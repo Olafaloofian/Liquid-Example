@@ -1,0 +1,56 @@
+{
+    "user": {
+        "firstName": "Michael",
+        "lastName": "Kerr",
+        "email": "michael@sdxsolutions.com",
+        "phone": 5556198243,
+        "address": {
+            "street": "4275 E Baugh Ave",
+            "city": "San Diego",
+            "state": "CA",
+            "zip": 92029
+        }
+    },
+    "order": {
+        "number": 1278419234,
+        "date": "6/1/2022",
+        "payment": {
+            "cardType": "Visa",
+            "lastFour": 6982,
+            "tax": 6.79
+        },
+        "shipping": {
+            "type": "USPS First Class",
+            "fee": 5.98
+        },
+        "items": [
+            {
+                "name": "Tile Pro",
+                "quantity": 1,
+                "color": "Black",
+                "link": "https://www.thetileapp.com/en-us/store/tiles/pro",
+                "image": "https://images-ctfassets.thetileapp.com/zu5ihvi7m05g/1hHqBpXtTTBXOmun7Ca2DL/6ed09e04bb987d50660c9dc51ef638df/FALL21-Black-Pro-1-Pack-PDI.png?fm=webp&q=90&w=1000",
+                "price": 34.99,
+                "sku": "Y120576"
+            },
+            {
+                "name": "Tile Mate",
+                "quantity": 1,
+                "color": "White",
+                "link": "https://www.thetileapp.com/en-us/store/tiles/mate",
+                "image": "https://images-ctfassets.thetileapp.com/zu5ihvi7m05g/3JCBtk6JISTuzG0DtUEfM0/fc4c45379472ca597e290590496708fc/FALL21-White-Pro-1-Pack-PDI.png?fm=webp&q=90&w=1000",
+                "price": 34.99,
+                "sku": "N334972"
+            },
+            {
+                "name": "Tile Sticker",
+                "quantity": 1,
+                "color": null,
+                "link": "https://www.thetileapp.com/en-us/store/tiles/sticker",
+                "image": "https://images-ctfassets.thetileapp.com/zu5ihvi7m05g/9ukwsjg8QiOh1Se3e1hPB/03959b6b88321fb1104d9447c30beb46/FALL21-Black-Sticker-Pack-PDI.png?fm=webp&q=90&w=1000",
+                "price": 29.99,
+                "sku": "V002946"
+            }
+        ]
+    }
+}

@@ -1,0 +1,94 @@
+{% assign visa_image = "https://usa.visa.com/dam/VCOM/regional/ve/romania/blogs/hero-image/visa-logo-800x450.jpg" %}
+{% assign mastercard_image = "https://cdn.vox-cdn.com/thumbor/UKSLdttYoIK2bv1gd231rqL4eiQ=/1400x788/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/13674554/Mastercard_logo.jpg" %}
+{% assign discover_image = "https://seeklogo.com/images/D/-logo-BC01BC2241-seeklogo.com.png" %}
+
+<html>
+    <body>
+        <header>
+            <div>
+                {% if user %}
+                    Hi {{user.firstName}}!
+                {% else %}
+                    Hi there!
+                {% endif %}
+            </div>
+            <div>
+                Thank you for your purchase.
+                <button><a href="https://www.example.com">View order details</a></button>
+            </div>
+            <div>
+                Order #{{order.number}}
+                {{order.date}}
+            </div>
+        </header>
+        <hr>
+        <main>
+            <div>
+                {% for item in order.items %}
+                    <div>
+                        <img src="{{item.image}}" alt="{{item.name}}">
+                        <div>
+                            <a href="{{item.link}}">{{item.name}}</a>
+                            Color: {{item.color}}
+                            SKU: {{item.sku}}
+                            Quantity: {{item.quantity}}
+                        </div>
+                        <div>${{item.price}}</div>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+            <div>
+                <div>
+                    <img src="
+                        {% case order.payment.cardType %}
+                        {% when "Visa" %}
+                            {{visa_image}}
+                        {% when "Mastercard" %}
+                            {{mastercard_image}}
+                        {% when "Discover" %}
+                            {{discover_image}}
+                        {% endcase %}
+                    " alt="{{order.payment.cardType}}">
+                    ...{{order.payment.lastFour}} - {{order.payment.cardType}}
+                </div>
+                <div>
+                    {% assign total = 0 %}
+                    <div>
+                        {% assign subtotal = 0 %}
+                        {% for item in order.items %}
+                            {% assign subtotal = subtotal | plus item.price%}
+                        {% endfor %}
+                        Subtotal: {{subtotal | round: 2}}
+                        {% assign total = total | plus subtotal %}
+                    </div>
+                    <div>
+                        Shipping - {{order.shipping.type}}: ${{order.shipping.fee}}
+                        {% assign total = total | plus order.shipping.fee%}
+                    </div>
+                    <div>
+                        Tax: ${{order.payment.tax}}
+                        {% assign total = total | plus order.payment.tax %}
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                Total: ${{total | round: 2}}
+            </div>
+            <div>
+                Shipping Information
+                {% if user.firstName and user.lastName%}
+                    {{user.firstName}} {{user.lastName}}
+                {% endif %}
+                {{user.address.street}}
+                {{user.address.city}}, {{user.address.state}}, {{user.address.zip}}
+                {{user.email}}
+                {{user.phone}}
+            </div>
+        </main>
+        <footer>
+            This email was sent to you by <a href="https://www.thetileapp.com/">Tile</a>
+        </footer>
+    </body>
+<html>
